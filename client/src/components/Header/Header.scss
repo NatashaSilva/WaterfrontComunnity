@@ -1,0 +1,35 @@
+@use '../../partials/typography' as *;
+@use '../../partials/mixins' as *;
+@use '../../partials/variables' as *;
+
+
+// header {
+//     background-color: $blue;
+// }
+
+// .container {
+
+//     &__nav {
+//         display: flex;
+//         justify-content: space-between;
+//     }
+
+//     &__logo {
+//         height: 5rem;
+//     }
+
+//     &__navOption {
+//         @include reset-link;
+//         color: $mustard;
+//         margin-right: 1rem;
+//         border: 1px solid $mustard;
+//         border-radius: 4px;
+//         padding: 0.3rem;
+//     }
+
+//     &__right {
+//         display: flex;
+//         margin: auto 0;
+        
+//     }
+// }

@@ -1,0 +1,36 @@
+// @mixin tablet {
+//     @media screen and (min-width: 768px) {
+//         @content;
+//     }
+// }
+
+// @mixin desktop {
+//     @media screen and (min-width: 1080px) {
+//         @content;
+//     }
+// }
+
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin reset-link {
+    display: block;
+    text-decoration: none;
+}
+
+// @mixin responsiveness {
+//     max-width: 1080px;
+//     margin: 0 auto;
+// }
+
+@mixin reset-body{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body, :after, :before {
+    @include reset-body;
+}

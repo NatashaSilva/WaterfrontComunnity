@@ -1,0 +1,57 @@
+@use '../../partials/typography' as *;
+@use '../../partials/mixins' as *;
+@use '../../partials/variables' as *;
+
+main {
+    background: linear-gradient(rgba(50, 50, 50, 0.7),rgba(50, 50, 50, 0.7)), url("../../assets/images/Toronto-Waterfront-final.jpeg");
+    background-size: cover;
+    background-position: center;
+    height: 40rem;  
+}
+
+.home-section {
+    
+    // background-size: cover;
+    // background-position: center;
+    // height: 40rem;  
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+
+    &__text {
+        color: $mustard;
+        padding-top: 15rem;
+        text-align: center;
+        font-size: 30px;
+    }
+}
+
+.container {
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__logo {
+        height: 5rem;
+    }
+
+    &__navOption {
+        @include reset-link;
+        color: $mustard;
+        margin-right: 1rem;
+        border: 1px solid $mustard;
+        border-radius: 4px;
+        padding: 0.5rem;
+    }
+
+    &__right {
+        display: flex;
+        margin: auto 0;
+        padding-top: 2rem;
+        padding-left: 6.5rem;
+        
+    }
+}
+

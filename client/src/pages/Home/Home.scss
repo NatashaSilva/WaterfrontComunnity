@@ -44,6 +44,10 @@ main {
         border: 1px solid $mustard;
         border-radius: 4px;
         padding: 0.5rem;
+        &:hover {
+            background-color: $neutral;
+            opacity: 0.8;
+        }
     }
 
     &__right {
@@ -51,6 +55,7 @@ main {
         margin: auto 0;
         padding-top: 2rem;
         padding-left: 6.5rem;
+        
         
     }
 }

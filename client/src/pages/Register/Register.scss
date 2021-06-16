@@ -10,7 +10,7 @@
     &__container {
         border: 2px outset $mustard;
         border-radius: 4px;
-        margin: 2.5rem;
+        margin: 2rem;
         // margin-top: 10rem;
         padding: 2.5rem 1rem ;
     }
@@ -33,6 +33,7 @@
             border-radius: 4px;
             border-style: solid;
             border-width: thin;
+            height: 2.7rem;
         }
 
         &--button{ 
@@ -41,7 +42,7 @@
         }
 
         &--submit {
-            height: 1.9375rem;
+            height: 2.052rem;
             padding: 0 1rem;
             background-color: $mustard;
             color: $neutral;
@@ -50,7 +51,7 @@
         }
 
         &--cancel {
-            height: 1.9375rem;
+            height: 2.052rem;
             margin-right: 1rem;
             padding: 0 1rem;
             background-color: white;
@@ -58,8 +59,20 @@
             border-radius: 4px;
             border: 0;
         }
-
     }
+}
 
-    
+.ui.selection.dropdown {
+    border: 1px solid rgb(118, 118, 118) !important;
+    margin-bottom: 0.875rem !important;
+    height: 1.5rem !important;
+    padding: 0.5rem !important;
+}
+
+.ui.multiple.dropdown>.text {
+    margin: 0 !important;
+}
+
+.ui.default.dropdown:not(.button)>.text, .ui.dropdown:not(.button)>.default.text {
+    color: rgb (0, 0, 0) !important;
 }

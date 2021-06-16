@@ -1,8 +1,18 @@
 import "./Register.scss";
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
+import { Dropdown } from 'semantic-ui-react'
+import Skills from '../../components/Skills/Skills'
+import Interest from '../../components/Interest/Interest'
 
-function Register (){
+function Register () {
+
+    const styleLink = document.createElement("link");
+    styleLink.rel = "stylesheet";
+    styleLink.href =
+    "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
+    document.head.appendChild(styleLink);
+
     return (
         <section className='register-section'>
             <div className='register-section__container'>
@@ -11,7 +21,7 @@ function Register (){
                 </div>
                 <form className='register-section__form'>
                     <div className='register-section__form--field'>
-                        <label htmlFor><h4>Name</h4>
+                        <label htmlFor='name'><h4>Name</h4>
                             <input
                             type='text'
                             name='name'
@@ -20,7 +30,7 @@ function Register (){
                             className='register-section__form--input'                                              
                             />
                         </label>
-                        <label htmlFor><h4>Email address</h4>
+                        <label htmlFor='email'><h4>Email address</h4>
                             <input
                             type='email'
                             name='email'
@@ -29,7 +39,7 @@ function Register (){
                             className='signIn-section__form--input'                                              
                             />
                         </label>
-                        <label htmlFor><h4>Date of Birth</h4>
+                        <label htmlFor='birth'><h4>Date of Birth</h4>
                             <input
                             type='date'
                             name='birth'
@@ -37,7 +47,7 @@ function Register (){
                             className='signIn-section__form--input'                                              
                             />
                         </label>
-                        <label htmlFor><h4>Password</h4>
+                        <label htmlFor='password'><h4>Password</h4>
                             <input
                             type='password'
                             name='password'
@@ -46,7 +56,15 @@ function Register (){
                             className='register-section__form--input'                                            
                             />
                         </label>
-                        <select name='skills' multiple='' class='signIn-section__form--input'>
+                        <label htmlFor='skills'><h4>Skills</h4>
+                            <Skills /> 
+                        </label>
+                        <label htmlFor='interest'><h4>Interest</h4>
+                            <Interest />  
+                        </label>
+                          
+                                            
+                        {/* <select name='skills' multiple='' class='signIn-section__form--input'>
                             <option value=''>Skills</option>
                             <option value='basicAssembler'>Basic Furniture Assembler</option>
                             <option value='advancedAssembler'>Professional Furniture Assembler</option>
@@ -86,7 +104,7 @@ function Register (){
                             <option value='winter'>Winter Activities</option>
                             <option value='writing'>Writing</option>
                             <option value='yoga'>Yoga</option>                              
-                        </select>
+                        </select> */}
                     </div>
                     <div className='register-section__form--button'>
                         <input type='submit' value='REGISTER' className='register-section__form--submit'/>  

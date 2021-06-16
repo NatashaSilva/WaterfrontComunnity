@@ -13,10 +13,10 @@ function Home() {
                     Welcome to the Waterfront Community
                 </h1>
                 <div className="container__right">
-                    <Link to="/SignIn" className="container__navOption">
+                    <Link to="/signIn" className="container__navOption">
                         Sign In
                     </Link>
-                    <Link to="/signUp" className="container__navOption">
+                    <Link to="/register" className="container__navOption">
                         Register
                     </Link>
                 </div>

@@ -3,33 +3,40 @@
 @use '../../partials/variables' as *;
 
 
-// header {
-//     background-color: $blue;
-// }
+header {
+    background-color: $neutral;
+}
 
-// .container {
+.header{
 
-//     &__nav {
-//         display: flex;
-//         justify-content: space-between;
-//     }
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 1rem 0;
+    }
 
-//     &__logo {
-//         height: 5rem;
-//     }
+    &__navOption {
+        @include reset-link;
+        color: $mustard;
+        margin-right: 1rem;
+        border: 1px solid $mustard;
+        border-radius: 4px;
+        padding: 0.3rem;
+    }
 
-//     &__navOption {
-//         @include reset-link;
-//         color: $mustard;
-//         margin-right: 1rem;
-//         border: 1px solid $mustard;
-//         border-radius: 4px;
-//         padding: 0.3rem;
-//     }
-
-//     &__right {
-//         display: flex;
-//         margin: auto 0;
+    &__right {
+        display: flex;
+        margin: auto 0;
         
-//     }
-// }
+    }
+
+    &__placeholder {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-left: 1rem;
+        background-color: $blue;
+    }
+}

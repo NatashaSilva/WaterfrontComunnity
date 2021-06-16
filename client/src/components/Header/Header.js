@@ -1,25 +1,27 @@
 import "./Header.scss";
 import React from "react";
 import {Link} from "react-router-dom";
-import Logo from "../../assets/logo/logo9.png"
 
 function Header() {
 	
 	return (
 		<header>
-            <div className="container">
-                <nav className="container__nav">
-                    <div className="container__left">
-                        <Link to="/">
-                            <img src={Logo} className="container__logo" alt="Waterfront community Logo"/>
+            <div className="header">
+                <nav className="header__nav">
+                    <div className="header__left">
+                        <Link to="/user">
+                            <div className="header__placeholder"></div>
                         </Link>
                     </div>
-                    <div className="container__right">
-                        <Link to="/logIn" className="container__navOption">
-                            Log In
+                    <div className="header__right">
+                        {/* <Link to="/skills" className="header__navOption">
+                            Skills
                         </Link>
-                        <Link to="/signIn" className="container__navOption">
-                            Sign In
+                        <Link to="/interest" className="header__navOption">
+                            Interest
+                        </Link> */}
+                        <Link to="/" className="header__navOption">
+                            Log out
                         </Link>
                     </div>
                 </nav>

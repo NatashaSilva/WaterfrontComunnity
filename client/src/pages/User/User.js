@@ -2,12 +2,15 @@ import "./User.scss";
 import React, {Component} from "react";
 // import { Link } from "react-router-dom";
 import Header from '../../components/Header/Header';
+import axios from "axios";
 
 class User extends Component {
 
     state = {
         showSkills: false,
         showInterest: false,
+        user: null,
+        failedAuth: false,
         users: [
             {
                 name: 'Andrea Andrade',
@@ -57,6 +60,34 @@ class User extends Component {
         ]
     }
 
+    // componentDidMount () {
+
+    //     const token = sessionStorage.getItem('token');
+
+    //     if (!token) {
+    //         return this.setState({
+    //             failedAuth: true,
+    //         });
+    //     }
+
+    //     axios.get('http://localhost:8080/api/users/current'), {
+    //         headers: {
+    //             Authorization: `Bearer ${token}`
+    //         },
+    //     }
+    //     .then((response) => {
+    //         console.log(response.data)
+    //         this.setState({
+    //             user: response.data,
+    //         });
+    //     })
+    //     .catch((error) => {
+    //         this.setState({
+    //             failedAuth: true,
+    //         });
+    //     });
+    // }
+
     handleSkillsClick = (event) => {
         event.preventDefault();
 
@@ -78,6 +109,10 @@ class User extends Component {
     }
 
     render () {
+
+        // if (!this.state.user) {
+        //     return <p>Loading...</p>
+        // }
 
         console.log(this.state.users);
         return (

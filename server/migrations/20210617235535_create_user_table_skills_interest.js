@@ -13,26 +13,43 @@ exports.up = function(knex) {
         table.increments('id').primary();
         table.string('name').notNullable();
     })    
-    .createTable('users_skills', (table) => {
+    .createTable('interest', (table) => {
+        table.increments('id').primary();
+        table.string('name').notNullable();
+    }) 
+    .createTable('users_interest', (table) => {
         table.increments('id').primary()
         table
-          .integer('user_id')
+          .integer('user_id').unsigned().notNullable()
           .references('id')
           .inTable('users')
         table
-          .integer('skills_id')
+          .integer('interest_id').unsigned().notNullable()
+          .references('id')
+          .inTable('interest')
+    })
+    .createTable('users_skills', (table) => {
+        table.increments('id').primary()
+        table
+          .integer('user_id').unsigned().notNullable()
+          .references('id')
+          .inTable('users')
+        table
+          .integer('skills_id').unsigned().notNullable()
           .references('id')
           .inTable('skills')
-    })
+    });
 };
 
 exports.down = function(knex) {
     return knex.schema
+    .dropTableIfExists('users_skills')
+    .dropTableIfExists('users_interest')
     .dropTableIfExists('users')
     .dropTableIfExists('skills')
-    .dropTableIfExists('users_skills')
+    .dropTableIfExists('interest')
     .catch(err => {
       console.error(err)
       throw err
-    })
+    });
 };

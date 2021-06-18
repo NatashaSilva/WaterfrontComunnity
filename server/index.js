@@ -24,7 +24,7 @@ app.get('/users', (req, res) => {
         .select('*')
         .from('users')
         .then((users) => {
-            const promises = users.map((user) => {
+            const promisesSkills = users.map((user) => {
               return knex.select('name')
                 .from('users_skills')
                 .join('skills', 'skills.id', 'users_skills.skills_id')
@@ -35,29 +35,23 @@ app.get('/users', (req, res) => {
                   return user;
                 });
             });
-            Promise.all(promises).then((values)=> {
+            const promisesInterest = users.map((user) => {
+                return knex.select('name')
+                  .from('users_interest')
+                  .join('interest', 'interest.id', 'users_interest.interest_id')
+                  .where('user_id', user.id)
+                  .then((interest) => {
+                    user.interest = interest.map((int)=> int.name);
+                    console.log(interest)
+                    return user;
+                  });
+              });
+            Promise.all(promisesInterest).then((values)=> {
                 res.json(values);
             });
         })
         .catch((err) => res.send('Error getting users data'));
 });
-
-// select('*')
-//   .from('users')
-//   .then((users) => {
-//     const promises = users.map((user) => {
-//       return select('*')
-//         .from('users_skills')
-//         .join('skills', 'skills.id', 'users_skills.skills_id')
-//         .where('user_id', user.id)
-//         .then((skills) => {
-//           user.skills = skills;
-//           return user;
-//         });
-//     });
-//     return Promise.all(promises);
-//   });
-
 
 // getFlowersInBouquets(){
 //     return database('bouquets')

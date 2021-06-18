@@ -2,7 +2,7 @@ module.exports =  [
     {
         id: 1,
         name: 'Andrea Andrade',
-        email: 'carolinacabral@gmail.com',
+        email: 'andreaandrade@gmail.com',
         bio: 'I love puzzles and solving problems. Currently working on improving my painting skills.',
         postal: 'M5J',
         password: '123'

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Dropdown } from 'semantic-ui-react'
 import axios from "axios";
-import { API_URL_ROOT, API_ADD_USERS_PATH  } from "../apiLink.js";
+import { API_URL_ROOT, API_ADD_USERS_PATH, API_USERS_PATH  } from "../apiLink.js";
 
 function Register () {
     const [skills, setSkills] = useState([]);
@@ -42,7 +42,7 @@ function Register () {
             interests
         }
 
-        axios.post(`${API_URL_ROOT}/${API_ADD_USERS_PATH}`, user)
+        axios.post(`${API_URL_ROOT}/${API_USERS_PATH}/${API_ADD_USERS_PATH}`, user)
         .then((res) => {
             console.log(res)
         })

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import Header from '../../components/Header/Header';
 import axios from "axios";
-import { API_URL_ROOT, API_USERS_PATH  } from "../apiLink.js";
+import { API_URL_ROOT, API_USERS_PATH } from "../apiLink.js";
 
 const User = () => {
     const [showSkills, setShowSkills] = useState(false)

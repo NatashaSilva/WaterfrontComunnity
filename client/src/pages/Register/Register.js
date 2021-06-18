@@ -2,10 +2,63 @@ import "./Register.scss";
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import { Dropdown } from 'semantic-ui-react'
-import Skills from '../../components/Skills/Skills'
+// import Skills from '../../components/Skills/Skills'
 import Interest from '../../components/Interest/Interest'
 
 function Register () {
+
+    const options_skills = [
+        { key: 'basicAssembler', text: 'Basic Furniture Assembler', value: 'basicAssembler' },
+        { key: 'advancedAssembler', text: 'Professional Furniture Assembler', value: 'advancedAssembler' },
+        { key: 'basicCooker', text: 'Basic Cooking', value: 'basicCooker' },
+        { key: 'advancedCooker', text: 'Professional Cooking', value: 'advancedCooker' },
+        { key: 'basicPhoto', text: 'Basic Photographer', value: 'basicPhoto' },
+        { key: 'advancedPhoto', text: 'Professional Photographer', value: 'advancedPhoto' },
+        { key: 'babysitter', text: 'Babysitter', value: 'babysitter' },
+        { key: 'accountant', text: 'Accountant', value: 'accountant' },
+        { key: 'financial', text: 'Financial Planner', value: 'financial' },
+        { key: 'mech', text: 'Mechanical', value: 'mech' },
+        { key: 'repair', text: 'Kitchen Repair', value: 'repair' },
+        { key: 'plumbing', text: 'Plumber', value: 'plumbing' },
+        { key: 'software', text: 'Software Engineer', value: 'software' },
+        { key: 'musician', text: 'Musician', value: 'musician' },
+        { key: 'writer', text: 'Writer', value: 'writer' },
+        { key: 'gardener', text: 'Gardener', value: 'gardener' },
+        { key: 'design', text: 'Interior Designer', value: 'design' },
+        { key: 'yoga', text: 'Yoga Instructor', value: 'yoga' },
+    ]
+      
+    const handleDropDownSelectSkills = (event, {value}) => {
+        console.log(value);
+        let skills = event.target.textContent;
+        console.log(skills);
+    }
+
+    const options_interest = [
+        { key: 'book', text: 'Books', value: 'book' },
+        { key: 'camping', text: 'Camping', value: 'camping' },
+        { key: 'cooking', text: 'Cooking', value: 'cooking' },
+        { key: 'cycling', text: 'Cycling', value: 'cycling' },
+        { key: 'dancing', text: 'Dancing', value: 'dancing' },
+        { key: 'gardening', text: 'Gardening', value: 'gardening' },
+        { key: 'hiking', text: 'Hiking', value: 'hiking' },
+        { key: 'indoor', text: 'Indoor Sports', value: 'indoor' },
+        { key: 'languages', text: 'Learning Languages', value: 'languages' },
+        { key: 'movie', text: 'Movies', value: 'movie' },
+        { key: 'music', text: 'Music', value: 'music' },
+        { key: 'outdoor', text: 'Outdoor Sports', value: 'outdoor' },
+        { key: 'painting', text: 'Painting', value: 'painting' },
+        { key: 'travel', text: 'Traveling', value: 'travel' },
+        { key: 'winter', text: 'Winter Activities', value: 'winter' },
+        { key: 'writing', text: 'Writing', value: 'writing' },
+        { key: 'yoga', text: 'Yoga', value: 'yoga' },
+    ]
+      
+    const handleDropDownSelectInterest = (event, {value}) => {
+        console.log(value);
+        let skills = event.target.textContent;
+        console.log(skills);
+    }
 
     const styleLink = document.createElement("link");
     styleLink.rel = "stylesheet";
@@ -57,10 +110,11 @@ function Register () {
                             />
                         </label>
                         <label htmlFor='skills'><h4>Skills</h4>
-                            <Skills /> 
+                            {/* <Skills /> */}
+                            <Dropdown onChange={handleDropDownSelectSkills}  placeholder='Skills' name='skills' fluid multiple selection options={options_skills} />
                         </label>
                         <label htmlFor='interest'><h4>Interest</h4>
-                            <Interest />  
+                            <Dropdown onChange={handleDropDownSelectInterest} name='interest' placeholder='Interest' fluid multiple selection options={options_interest} />  
                         </label>
                           
                                             

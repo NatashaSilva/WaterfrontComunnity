@@ -4,7 +4,7 @@ const knex = require('knex')(require('./knexfile'));
 const PORT = process.env.PORT || 5000;
 const cors = require('cors');
 const users = require('./routes/users');
-// const interest = require('./routes/interest');
+const interests = require('./routes/interests');
 
 app.use(cors());
 app.use(express.json());
@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', users);
-// app.use('/interest', interest);
+app.use('/interests', interests);
 
 // get all warehouses data
 // app.get('/users', (req, res) => {

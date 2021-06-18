@@ -1,13 +1,15 @@
 import "./Register.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Dropdown } from 'semantic-ui-react'
 import axios from "axios";
-import { API_URL_ROOT, API_ADD_USERS_PATH, API_USERS_PATH  } from "../apiLink.js";
+import { API_URL_ROOT, API_ADD_USERS_PATH, API_USERS_PATH, API_INTERESTS_PATH } from "../apiLink.js";
 
 function Register () {
-    const [skills, setSkills] = useState([]);
+    // const [skills, setSkills] = useState([]);
     const [interests, setInterests] = useState([]);
+    const [userSkills, setUserSkills] = useState([]);
+    const [userInterests, setUserInterests] = useState([]);
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [bio, setBio] = useState();
@@ -16,12 +18,12 @@ function Register () {
 
     const handleDropDownSelectSkills = (event, { value }) => {
         // TODO: Move skills to DB and update skills dropdown
-        setSkills(value);
+        setUserSkills(value);
     }
       
     const handleDropDownSelectInterest = (event, {value}) => {
         // TODO: Move interests to DB and update interests dropdown
-        setInterests(value);
+        setUserInterests(value);
     }
 
     const styleLink = document.createElement("link");
@@ -38,8 +40,8 @@ function Register () {
             bio, 
             postal,
             password,
-            skills, 
-            interests
+            userSkills, 
+            userInterests
         }
 
         axios.post(`${API_URL_ROOT}/${API_USERS_PATH}/${API_ADD_USERS_PATH}`, user)
@@ -47,6 +49,23 @@ function Register () {
             console.log(res)
         })
     }
+
+    useEffect(() => {
+        // TODO
+        axios.get(`${API_URL_ROOT}/${API_INTERESTS_PATH}`)
+            .then((response) => {
+                const formattedInterests = response.data.map((interest)=> { 
+                    return {
+                        text: interest.name ,
+                        value: interest.id
+                    }                       
+                })
+                console.log(formattedInterests)
+                setInterests(formattedInterests);
+            })
+    }, [])
+    
+    
 
     return (
         <section className='register-section'>
@@ -116,7 +135,7 @@ function Register () {
                             <Dropdown onChange={handleDropDownSelectSkills}  placeholder='Skills' name='skills' fluid multiple selection options={options_skills} />
                         </label>
                         <label htmlFor='interest'><h4>Interest</h4>
-                            <Dropdown onChange={handleDropDownSelectInterest} name='interest' placeholder='Interest' fluid multiple selection options={options_interest} />  
+                            <Dropdown onChange={handleDropDownSelectInterest} name='interest' placeholder='Interest' fluid multiple selection options={interests} />  
                         </label>
                         <label for="profile_pic"><h4>Choose file to upload</h4>
                             <input type="file" id="profile_pic" name="profile_pic"
@@ -178,6 +197,8 @@ function Register () {
 }
 
 export default Register;
+
+
 
 const options_skills = [
     { key: 'basicAssembler', text: 'Basic Furniture Assembler', value: 'basicAssembler' },

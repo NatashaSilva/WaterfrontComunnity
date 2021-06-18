@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 5000;
 const cors = require('cors');
 const users = require('./routes/users');
 const interests = require('./routes/interests');
+const skills = require('./routes/skills');
 
 app.use(cors());
 app.use(express.json());
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 
 app.use('/users', users);
 app.use('/interests', interests);
+app.use('/skills', skills);
 
 // get all warehouses data
 // app.get('/users', (req, res) => {

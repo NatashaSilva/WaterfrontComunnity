@@ -5,6 +5,7 @@ const users = require('./routes/users');
 const interests = require('./routes/interests');
 const skills = require('./routes/skills');
 const User = require('./models/user');
+const jwt      = require('jsonwebtoken');
 
 // required to use passport.js
 const passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
@@ -20,6 +21,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+const JwtStrategy = require('passport-jwt').Strategy,
+    ExtractJwt = require('passport-jwt').ExtractJwt;
+let opts = {}
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+opts.secretOrKey = 'secret';
+opts.issuer = 'accounts.examplesoft.com';
+opts.audience = 'yoursite.net';
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -41,17 +50,26 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-// Passport strategy
+passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
+  User.where({ id: jwt_payload.sub })
+    .fetch()
+    .then(
+      (user) => {
+        if (user) {
+          return done(null, user);
+        } else {
+          return done(null, false);
+        }
+      }
+    );
+}));
+
 passport.use(new LocalStrategy(
   function(username, password, done) {
     User.where({ email: username })
       .fetch()
       .then(
         (user) => {
-          console.log('password', password)
-          console.log('user.password', user.attributes.password)
-          // TODO
-          // if (err) { return done(err); }
           if (!user) {
             return done(null, false, { message: 'Incorrect email.' });
           }
@@ -77,16 +95,27 @@ app.use('/users', users);
 app.use('/interests', interests);
 app.use('/skills', skills);
 
-// app.post('/login', (req, res) => {
-//   res.json(req.body);
-// });
+app.post('/login', function (req, res, next) {
 
-app.post('/login',
-  passport.authenticate('local'),
-  function(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    res.sendStatus(200);
-  });
+  passport.authenticate('local', { session: false }, (err, user, info) => {
+      if (err || !user) {
+        return res.status(400).json({
+            message: info ? info.message : 'Login failed',
+            user   : user
+        });
+      }
+
+      req.login(user, { session: false }, (err) => {
+        if (err) {
+          res.send(err);
+        }
+
+        const token = jwt.sign({ data: user }, 'secret');
+        return res.json({user, token});
+      });
+  })
+  (req, res);
+
+});
 
 app.listen(PORT, console.log(`running at http://localhost:${PORT}`));

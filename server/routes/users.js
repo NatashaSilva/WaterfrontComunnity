@@ -79,11 +79,5 @@ router.post('/add-users', async (req,res) => {
     .catch(err => res.status(500).json(err));
 })
 
-// return Promise.all([skillsPromise, interestsPromise])
-// .then(res => {
-//   user.skills = res[0].map((skill)=> skill.name);
-//   user.interests = res[1].map((int)=> int.name);
-//   return user;
-// })
 
 module.exports = router;

@@ -17,12 +17,10 @@ function Register () {
     const [postal, setPostal] = useState();
 
     const handleDropDownSelectSkills = (event, { value }) => {
-        // TODO: Move skills to DB and update skills dropdown
         setUserSkills(value);
     }
       
-    const handleDropDownSelectInterest = (event, {value}) => {
-        // TODO: Move interests to DB and update interests dropdown
+    const handleDropDownSelectInterest = (event, { value }) => {
         setUserInterests(value);
     }
 
@@ -40,8 +38,8 @@ function Register () {
             bio, 
             postal,
             password,
-            userSkills, 
-            userInterests
+            skills: userSkills, 
+            interests: userInterests
         }
 
         axios.post(`${API_URL_ROOT}/${API_USERS_PATH}/${API_ADD_USERS_PATH}`, user)
@@ -51,7 +49,7 @@ function Register () {
     }
 
     useEffect(() => {
-        // TODO
+        // fetch all interests
         axios.get(`${API_URL_ROOT}/${API_INTERESTS_PATH}`)
             .then((response) => {
                 const formattedInterests = response.data.map((interest)=> { 
@@ -60,9 +58,10 @@ function Register () {
                         value: interest.id
                     }                       
                 })
-                console.log(formattedInterests)
                 setInterests(formattedInterests);
             })
+
+        // fetch all skills
         axios.get(`${API_URL_ROOT}/${API_SKILLS_PATH}`)
         .then((response) => {
             const formattedSkills = response.data.map((skill)=> { 
@@ -71,27 +70,9 @@ function Register () {
                     value: skill.id
                 }                       
             })
-            console.log(formattedSkills)
             setSkills(formattedSkills);
         })
-    }, [])
-
-    // useEffect(() => {
-    //     // TODO
-    //     axios.get(`${API_URL_ROOT}/${API_SKILLS_PATH}`)
-    //         .then((response) => {
-    //             const formattedSkills = response.data.map((skill)=> { 
-    //                 return {
-    //                     text: skill.name ,
-    //                     value: skill.id
-    //                 }                       
-    //             })
-    //             console.log(formattedSkills)
-    //             setSkills(formattedSkills);
-    //         })
-    // }, [])
-    
-    
+    }, [])  
 
     return (
         <section className='register-section'>

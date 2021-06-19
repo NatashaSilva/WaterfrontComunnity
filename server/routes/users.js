@@ -32,10 +32,58 @@ router.get('/', (req, res) => {
       .catch((err) => res.send('Error getting users data'));
 });
 
-router.post('/add-users', (req,res) => {
+router.post('/add-users', async (req,res) => {
+  const { name, email, bio, postal, password, skills, interests } = req.body
+  const user = {
+    name,
+    email,
+    bio,
+    postal, 
+    password
+  }
 
-  console.log(req.body)
+  const createUserRes = await knex('users').insert(user);
+  const userId = createUserRes?.[0];
 
+  if (!userId) res.status(500).json(err);
+
+  let interestsPromises = [];
+  let skillsPromises = [];
+
+  // INTERESTS
+  // insert na junction table users-interest
+  if (interests?.length > 0) {
+    interestsPromises = interests.map(interestId => {
+      return knex('users_interest').insert({
+        user_id: userId,
+        interest_id: interestId,
+      })
+    })
+  }
+
+  // SKILLS
+  // insert na junction table users-skills
+  if (skills?.length > 0) {
+    skillsPromises = skills.map(skill => {
+      return knex('users_skills').insert({
+        user_id: userId,
+        skills_id: skill,
+      })
+    })
+  }
+
+  Promise.all([...interestsPromises, ...skillsPromises])
+    .then(promisesRes => {
+      res.sendStatus(200);
+    })
+    .catch(err => res.status(500).json(err));
 })
+
+// return Promise.all([skillsPromise, interestsPromise])
+// .then(res => {
+//   user.skills = res[0].map((skill)=> skill.name);
+//   user.interests = res[1].map((int)=> int.name);
+//   return user;
+// })
 
 module.exports = router;

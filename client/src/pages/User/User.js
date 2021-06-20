@@ -7,8 +7,8 @@ import { API_URL_ROOT, API_USERS_PATH } from "../apiLink.js";
 import Card from "../../components/Card/Card";
 
 const User = () => {
-  const [showSkills, setShowSkills] = useState(false);
-  const [showInterest, setShowInterest] = useState(false);
+  // const [showSkills, setShowSkills] = useState(false);
+  // const [showInterest, setShowInterest] = useState(false);
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState([]);
 

@@ -6,6 +6,7 @@ const interests = require("./routes/interests");
 const skills = require("./routes/skills");
 const User = require("./models/user");
 const jwt = require("jsonwebtoken");
+const bCrypt = require("bcrypt-nodejs");
 
 // required to use passport.js
 const passport = require("passport"),

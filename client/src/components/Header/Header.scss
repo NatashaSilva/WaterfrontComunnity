@@ -25,6 +25,16 @@ header {
         padding: 0.3rem;
     }
 
+    &__left {
+        display: flex;
+        align-items: center;
+
+        p {
+            margin-left: 15px;
+            text-transform: capitalize;
+        }
+    }
+
     &__right {
         display: flex;
         margin: auto 0;

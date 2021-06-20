@@ -28,8 +28,6 @@ const JwtStrategy = require("passport-jwt").Strategy,
 let opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = "secret";
-opts.issuer = "accounts.examplesoft.com";
-opts.audience = "yoursite.net";
 
 passport.serializeUser(function (user, done) {
   done(null, user.id);
@@ -52,8 +50,8 @@ passport.deserializeUser(function (id, done) {
 });
 
 passport.use(
-  new JwtStrategy(opts, function (jwt_payload, done) {
-    User.where({ id: jwt_payload.sub })
+  new JwtStrategy(opts, function (jwtPayload, done) {
+    User.where({ id: jwtPayload.data.id })
       .fetch()
       .then((user) => {
         if (user) {
@@ -112,6 +110,19 @@ app.post("/login", function (req, res, next) {
       return res.json({ user, token });
     });
   })(req, res);
+});
+
+app.get(
+  "/me",
+  passport.authenticate("jwt", { session: false }),
+  function (req, res) {
+    res.send(req.user);
+  }
+);
+
+app.get("/logout", function (req, res) {
+  req.logout();
+  res.sendStatus(200);
 });
 
 app.listen(PORT, console.log(`running at http://localhost:${PORT}`));

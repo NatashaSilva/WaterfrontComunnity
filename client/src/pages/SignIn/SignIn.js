@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL_ROOT, API_LOGIN_PATH } from "../apiLink.js";
+import { useHistory } from "react-router-dom";
 
 const SignIn = () => {
   const [error, setError] = useState();
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,6 +22,7 @@ const SignIn = () => {
           setError({ error: "" });
         }
         localStorage.setItem("token", response.data.token);
+        history.push("/user");
       })
       .catch((error) => {
         setError({ error: error.response.data });
@@ -42,6 +45,7 @@ const SignIn = () => {
                 id="email"
                 placeholder="Email address"
                 className="signIn-section__form--input"
+                required
               />
             </label>
             <label htmlFor="password">
@@ -52,6 +56,7 @@ const SignIn = () => {
                 id="password"
                 placeholder="Password"
                 className="signIn-section__form--input"
+                required
               />
             </label>
           </div>
@@ -70,11 +75,7 @@ const SignIn = () => {
             </Link>
           </div>
           {/* check style in the lab - class: client-side Auth */}
-          {error && (
-            <div className="signIn-section__form--error">
-              {error}
-            </div>
-          )}
+          {error && <div className="signIn-section__form--error">{error}</div>}
         </form>
       </div>
     </section>

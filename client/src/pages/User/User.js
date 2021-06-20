@@ -9,42 +9,37 @@ const User = () => {
   const [showSkills, setShowSkills] = useState(false);
   const [showInterest, setShowInterest] = useState(false);
   const [users, setUsers] = useState([]);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     // TODO
     axios.get(`${API_URL_ROOT}/${API_USERS_PATH}`).then((response) => {
-      console.log(response);
-      // this.setState({ users: response.data })
+      setUsers(response.data || []);
     });
   }, []);
 
-  // componentDidMount () {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-  //     const token = sessionStorage.getItem('token');
+    // if (!token) {
+    //   return this.setState({
+    //     failedAuth: true,
+    //   });
+    // }
 
-  //     if (!token) {
-  //         return this.setState({
-  //             failedAuth: true,
-  //         });
-  //     }
-
-  //     axios.get('http://localhost:8080/api/users/current'), {
-  //         headers: {
-  //             Authorization: `Bearer ${token}`
-  //         },
-  //     }
-  //     .then((response) => {
-  //         console.log(response.data)
-  //         this.setState({
-  //             user: response.data,
-  //         });
-  //     })
-  //     .catch((error) => {
-  //         this.setState({
-  //             failedAuth: true,
-  //         });
-  //     });
-  // }
+    axios
+      .get(`${API_URL_ROOT}/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((error) => {
+        // TODO
+      });
+  }, []);
 
   const handleSkillsClick = (event) => {
     event.preventDefault();
@@ -60,12 +55,14 @@ const User = () => {
     return <p>No users yet.</p>;
   }
 
+  console.log(users);
+
   return (
     <div className="user">
-      <Header />
+      <Header user={user} />
       <div className="user-card">
         {users.map((user) => (
-          <div key={user.name} className="user-card__info">
+          <div key={user.id} className="user-card__info">
             <div className="user-card__info--title">
               <img className="user-card__info--img" alt=""></img>
               <h2 className="user-card__info--name">{user.name}</h2>
@@ -89,8 +86,8 @@ const User = () => {
                       : "user-card__info--hidden"
                   }
                 >
-                  {user.skills.map((skill) => (
-                    <li>{skill}</li>
+                  {user.skills?.map((skill) => (
+                    <li key={skill.id}>{skill}</li>
                   ))}
                 </ul>
               </div>
@@ -109,8 +106,8 @@ const User = () => {
                       : "user-card__info--hidden"
                   }
                 >
-                  {user.interest.map((skill) => (
-                    <li>{skill}</li>
+                  {user.interest?.map((interest) => (
+                    <li key={interest.id}>{interest}</li>
                   ))}
                 </ul>
               </div>

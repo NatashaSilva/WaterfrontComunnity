@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Card.scss";
 
 const Card = ({ user }) => {
   const [showSkills, setShowSkills] = useState(false);

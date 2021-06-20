@@ -1,0 +1,53 @@
+@use '../../partials/typography' as *;
+@use '../../partials/mixins' as *;
+@use '../../partials/variables' as *;
+
+.redirect {
+    height: 736px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__navOption {
+        @include reset-link;
+        color: $mustard;
+        margin-right: 1rem;
+        margin-top: 1rem;
+        border: 1px solid $mustard;
+        border-radius: 4px;
+        padding: 0.5rem;
+        &:hover {
+            background-color: $neutral;
+            opacity: 0.8;
+        }
+    }
+}
+
+.user {
+
+    &-card {
+
+        &__form {
+
+            display: flex;
+            flex-direction: column;
+            margin: 1rem;
+            
+
+            &--search {
+                border: 1px solid grey;
+                border-radius: 1rem;
+                height: 1rem;
+                padding: 0.5rem 1rem;
+                background: url('../../assets/icons/search-24px.svg') center right 9.51px/1rem no-repeat;
+            }
+        }
+    }
+}
+
+// ui.fluid.multiple.selection.dropdown.user-card__form--search {
+//     box-sizing: border-box !important;
+//     margin: 0 1rem !important;
+//     width: 100% !important;
+// }

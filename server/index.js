@@ -6,7 +6,7 @@ const interests = require("./routes/interests");
 const skills = require("./routes/skills");
 const User = require("./models/user");
 const jwt = require("jsonwebtoken");
-const bCrypt = require("bcrypt-nodejs");
+const bcrypt = require("bcryptjs");
 
 // required to use passport.js
 const passport = require("passport"),
@@ -72,6 +72,20 @@ passport.use(
         if (!user) {
           return done(null, false, { message: "Incorrect email." });
         }
+
+        // const passwordsMatch = bcrypt.compareSync(
+        //   password,
+        //   user.attributes.password
+        // );
+
+        // console.log("check password 1", password);
+        // console.log("check password 2", user.attributes.password);
+        // console.log(passwordsMatch);
+
+        // if (!passwordsMatch) {
+        //   return done(null, false, { message: "Incorrect password." });
+        // }
+
         if (password !== user.attributes.password) {
           return done(null, false, { message: "Incorrect password." });
         }

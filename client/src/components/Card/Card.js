@@ -45,7 +45,7 @@ const Card = ({ user }) => {
             }
           >
             {hasSkills(user.skills) ? (
-              user.skills?.map((skill) => <li key={skill.id}>{skill}</li>)
+              user.skills?.map(({ id, name }) => <li key={id}>{name}</li>)
             ) : (
               <p>This user has no skills.</p>
             )}
@@ -65,9 +65,7 @@ const Card = ({ user }) => {
             }
           >
             {hasInterests(user.interests) ? (
-              user.interests?.map((interest) => (
-                <li key={interest.id}>{interest}</li>
-              ))
+              user.interests?.map(({ id, name }) => <li key={id}>{name}</li>)
             ) : (
               <p>This user has no interests.</p>
             )}

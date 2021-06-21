@@ -33,7 +33,6 @@ const User = () => {
   }, []);
 
   useEffect(() => {
-    // fetch all interests
     axios.get(`${API_URL_ROOT}/${API_INTERESTS_PATH}`).then((response) => {
       const formattedInterests = response.data.map((interest) => {
         return {
@@ -44,7 +43,6 @@ const User = () => {
       setInterest(formattedInterests);
     });
 
-    // fetch all skills
     axios.get(`${API_URL_ROOT}/${API_SKILLS_PATH}`).then((response) => {
       const formattedSkills = response.data.map((skill) => {
         return {
@@ -56,17 +54,8 @@ const User = () => {
     });
   }, []);
 
-  console.log(skills);
-  console.log(interest);
-
   useEffect(() => {
     const token = localStorage.getItem("token");
-
-    // if (!token) {
-    //   return this.setState({
-    //     failedAuth: true,
-    //   });
-    // }
 
     axios
       .get(`${API_URL_ROOT}/me`, {
@@ -77,29 +66,39 @@ const User = () => {
       .then((response) => {
         setUser(response.data);
       })
-      .catch((error) => {
-        // TODO
-      });
+      .catch((error) => {});
   }, []);
 
-  const handleDropDownSelectSkills = (event) => {
-    event.preventDefault();
-    const selectedSkills = event;
-    setShowSkills(selectedSkills);
+  const handleDropDownSelectSkills = (event, { value }) => {
+    setShowSkills(value);
   };
 
-  console.log("skills", showSkills);
+  const handleDropDownSelectInterest = (event, { value }) => {
+    setShowInterest(value);
+  };
 
-  const handleDropDownSelectInterest = (event) => {
-    event.preventDefault();
-    console.log("interest", event.target.innerText);
+  const arrayHasValue = (arr, key, listOfValues) => {
+    return arr
+      ? arr.filter((item) => listOfValues.includes(item[key])).length > 0
+      : false;
+  };
+
+  const isValidUser = (user) => {
+    console.log("user", user);
+    if (!(showSkills.length > 0) && !(showInterest.length > 0)) return true;
+    const hasAtLeastOneSkill = arrayHasValue(user.skills, "id", showSkills);
+    const hasAtLeastOneInterest = arrayHasValue(
+      user.interests,
+      "id",
+      showInterest
+    );
+
+    return hasAtLeastOneSkill || hasAtLeastOneInterest;
   };
 
   if (!users) {
     return <p>No users yet.</p>;
   }
-
-  console.log(users);
 
   if (!localStorage.token) {
     return (
@@ -137,12 +136,12 @@ const User = () => {
             selection
             options={interest}
           />
-          {/* 
-          <input type="search"></input> */}
         </form>
-        {users.map((user) => (
-          <Card user={user} />
-        ))}
+        {users
+          .filter((user) => isValidUser(user))
+          .map((user) => (
+            <Card user={user} />
+          ))}
       </div>
     </div>
   );

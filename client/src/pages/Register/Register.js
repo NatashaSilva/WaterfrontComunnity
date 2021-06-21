@@ -20,11 +20,11 @@ function Register() {
   const [submitting, setSubmitting] = useState(false);
   const history = useHistory();
 
-  const handleDropDownSelectSkills = (event, { value }) => {
+  const handleDropDownSelectSkills = (_event, { value }) => {
     setUserSkills(value);
   };
 
-  const handleDropDownSelectInterest = (event, { value }) => {
+  const handleDropDownSelectInterest = (_event, { value }) => {
     setUserInterests(value);
   };
 

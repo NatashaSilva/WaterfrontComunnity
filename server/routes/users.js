@@ -10,20 +10,27 @@ router.get("/", (req, res) => {
     .then((users) => {
       const userDataPromise = users.map((user) => {
         const skillsPromise = knex
-          .select("name")
+          .select("*")
           .from("users_skills")
           .join("skills", "skills.id", "users_skills.skills_id")
           .where("user_id", user.id);
 
         const interestsPromise = knex
-          .select("name")
+          .select("*")
           .from("users_interest")
           .join("interest", "interest.id", "users_interest.interest_id")
           .where("user_id", user.id);
 
         return Promise.all([skillsPromise, interestsPromise]).then((res) => {
-          user.skills = res[0].map((skill) => skill.name);
-          user.interests = res[1].map((int) => int.name);
+          user.skills = res[0].map((skill) => ({
+            name: skill.name,
+            id: skill.id,
+          }));
+          user.interests = res[1].map((int) => ({
+            name: int.name,
+            id: int.id,
+          }));
+          console.log(res);
           return user;
         });
       });

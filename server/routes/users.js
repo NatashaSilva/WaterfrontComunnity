@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const knex = require("knex")(require("../knexfile"));
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 
 router.get("/", (req, res) => {
   knex
@@ -38,17 +38,15 @@ router.get("/", (req, res) => {
 router.post("/add-users", async (req, res) => {
   const { name, email, bio, postal, password, skills, interests } = req.body;
 
-  // const passwordHashed = bcrypt.hash(password, 8).then((hashedPassword) => {
-  //   return hashedPassword;
-  // });
-  // console.log(passwordHashed);
+  const passwordHashed = bcrypt.hashSync(password, 8);
+  console.log(passwordHashed);
 
   const user = {
     name,
     email,
     bio,
     postal,
-    password,
+    password: passwordHashed,
   };
 
   const createUserRes = await knex("users").insert(user);

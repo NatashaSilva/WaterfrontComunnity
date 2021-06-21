@@ -4,10 +4,14 @@
 
 
 header {
-    background-color: $neutral;
+    background-color: $purple;
 }
 
 .header{
+
+    & p {
+        color: $white !important;
+    }
 
     &__nav {
         display: flex;
@@ -18,11 +22,13 @@ header {
 
     &__navOption {
         @include reset-link;
-        color: $mustard;
+        color: $white;
         margin-right: 1rem;
-        border: 1px solid $mustard;
+        border: 1px solid $pink;
         border-radius: 4px;
-        padding: 0.3rem;
+        padding: 0.5rem;
+        background-color: $pink;
+        
     }
 
     &__left {
@@ -32,6 +38,7 @@ header {
         p {
             margin-left: 15px;
             text-transform: capitalize;
+            color: $white;
         }
     }
 
@@ -47,6 +54,6 @@ header {
         border-radius: 50%;
         object-fit: cover;
         margin-left: 1rem;
-        background-color: $blue;
+        background-color: $pink;
     }
 }

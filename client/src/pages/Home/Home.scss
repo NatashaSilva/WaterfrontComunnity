@@ -3,7 +3,7 @@
 @use '../../partials/variables' as *;
 
 main {
-    background: linear-gradient(rgba(50, 50, 50, 0.7),rgba(50, 50, 50, 0.7)), url("../../assets/images/Toronto-Waterfront-final.jpeg");
+    background: linear-gradient(rgba(50, 50, 50, 0.7),rgba(50, 50, 50, 0.7)), url("../../assets/images/toronto-purple.jpeg");
     background-size: cover;
     background-position: center;
     height: 46rem;  
@@ -19,7 +19,7 @@ main {
     // align-items: center;
 
     &__text {
-        color: $mustard;
+        color: $white;
         padding-top: 18rem;
         text-align: center;
         font-size: 30px;
@@ -37,15 +37,20 @@ main {
         height: 5rem;
     }
 
+
+
     &__navOption {
         @include reset-link;
-        color: $mustard;
+        font-weight: bold;
+        color: $white;
         margin-right: 1rem;
-        border: 1px solid $mustard;
+        border: 2px solid $pink;
         border-radius: 4px;
-        padding: 0.5rem;
+        padding: 1rem;
+        width: 55px;
+        text-align: center;
         &:hover {
-            background-color: $neutral;
+            background-color: $purple;
             opacity: 0.8;
         }
     }
@@ -54,7 +59,7 @@ main {
         display: flex;
         margin: auto 0;
         padding-top: 2rem;
-        padding-left: 8.5rem;
+        padding-left: 7rem;
         
         
     }

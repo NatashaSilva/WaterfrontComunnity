@@ -84,119 +84,122 @@ function Register() {
   return (
     <section className="register-section">
       <div className="register-section__container">
-        <div className="register-section__title">
-          <h2>Create a new account</h2>
-        </div>
-        <form className="register-section__form" onSubmit={handleSubmit}>
-          <div className="register-section__form--field">
-            <label htmlFor="name">
-              <h4>Name</h4>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Name"
-                className="register-section__form--input"
-                required
-              />
-            </label>
-            <label htmlFor="email">
-              <h4>Email address</h4>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email address"
-                className="signIn-section__form--input"
-                required
-              />
-            </label>
-            <label htmlFor="bio">
-              <h4>Bio</h4>
-              <textarea
-                type="bio"
-                name="bio"
-                id="bio"
-                placeholder="Add about yourself"
-                className="signIn-section__form--input"
-                required
-              />
-            </label>
-            <label htmlFor="postal">
-              <h4>Postal Code</h4>
-              <input
-                type="text"
-                name="postal"
-                id="postal"
-                placeholder="Postal Code"
-                className="signIn-section__form--input"
-                required
-              />
-            </label>
-            <label htmlFor="password">
-              <h4>Password</h4>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                className="register-section__form--input"
-                required
-              />
-            </label>
-            <label htmlFor="skills">
-              <h4>Skills</h4>
-              {/* <Skills /> */}
-              <Dropdown
-                onChange={handleDropDownSelectSkills}
-                placeholder="Skills"
-                name="skills"
-                fluid
-                multiple
-                selection
-                options={skills}
-              />
-            </label>
-            <label htmlFor="interest">
-              <h4>Interest</h4>
-              <Dropdown
-                onChange={handleDropDownSelectInterest}
-                name="interest"
-                placeholder="Interest"
-                fluid
-                multiple
-                selection
-                options={interests}
-              />
-            </label>
-            <label for="profile_pic">
-              <h4>Choose file to upload</h4>
-              <input
-                type="file"
-                id="profile_pic"
-                name="profile_pic"
-                accept=".jpg, .jpeg, .png"
-              />
-            </label>
+        <div className="register-section__box">
+          <div className="register-section__title">
+            <h2>Create a new account</h2>
           </div>
-          <div className="register-section__form--button">
-            {/* <input type='submit' value='REGISTER' className='register-section__form--submit'/> */}
-            <button
-              type="submit"
-              className="register-section__form--submit"
-              disabled={submitting}
-            >
-              REGISTER
-            </button>
-            <Link to={"/"}>
-              <input
-                className="register-section__form--cancel"
+          <form className="register-section__form" onSubmit={handleSubmit}>
+            <div className="register-section__form--field">
+              <label htmlFor="name">
+                <h4>Name</h4>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Name"
+                  className="register-section__form--input"
+                  required
+                />
+              </label>
+              <label htmlFor="email">
+                <h4>Email address</h4>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email address"
+                  className="signIn-section__form--input"
+                  required
+                />
+              </label>
+              <label htmlFor="bio">
+                <h4>Bio</h4>
+                <textarea
+                  type="text"
+                  name="bio"
+                  id="bio"
+                  placeholder="Add about yourself"
+                  className="signIn-section__form--input"
+                  required
+                />
+              </label>
+              <label htmlFor="postal">
+                <h4>Postal Code</h4>
+                <input
+                  type="text"
+                  name="postal"
+                  id="postal"
+                  placeholder="Postal Code"
+                  className="signIn-section__form--input"
+                  required
+                />
+              </label>
+              <label htmlFor="password">
+                <h4>Password</h4>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  className="register-section__form--input"
+                  required
+                />
+              </label>
+              <label htmlFor="skills">
+                <h4>Skills</h4>
+                {/* <Skills /> */}
+                <Dropdown
+                  onChange={handleDropDownSelectSkills}
+                  placeholder="Skills"
+                  name="skills"
+                  fluid
+                  multiple
+                  selection
+                  options={skills}
+                />
+              </label>
+              <label htmlFor="interest">
+                <h4>Interest</h4>
+                <Dropdown
+                  onChange={handleDropDownSelectInterest}
+                  name="interest"
+                  placeholder="Interest"
+                  fluid
+                  multiple
+                  selection
+                  options={interests}
+                />
+              </label>
+              <label for="profile_pic" className="register-section__form--pic">
+                <h4>Choose photo to upload</h4>
+                <input
+                  type="file"
+                  id="profile_pic"
+                  name="profile_pic"
+                  accept=".jpg, .jpeg, .png"
+                  className="register-section__form--photo"
+                />
+              </label>
+            </div>
+            <div className="register-section__form--button">
+              {/* <input type='submit' value='REGISTER' className='register-section__form--submit'/> */}
+              <button
                 type="submit"
-                value="CANCEL"
-              />{" "}
-            </Link>
-          </div>
-        </form>
+                className="register-section__form--submit"
+                disabled={submitting}
+              >
+                REGISTER
+              </button>
+              <Link to={"/"}>
+                <input
+                  className="register-section__form--cancel"
+                  type="submit"
+                  value="CANCEL"
+                />{" "}
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );

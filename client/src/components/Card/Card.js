@@ -34,7 +34,7 @@ const Card = ({ user }) => {
         <div className="user-card__info--skills">
           <button
             to="/skills"
-            className="user-card__info--button"
+            className="user-card__info--button user-card__info--skills"
             onClick={handleSkillsClick}
           >
             Skills
@@ -54,7 +54,7 @@ const Card = ({ user }) => {
         <div className="user-card__info--interest">
           <button
             to="/interest"
-            className="user-card__info--button"
+            className="user-card__info--button user-card__info--interest"
             onClick={handleInterestClick}
           >
             Interest
@@ -73,6 +73,11 @@ const Card = ({ user }) => {
             )}
           </ul>
         </div>
+      </div>
+      <div className="user-card__info--contact">
+        <a className="user-card__info--email" href={"mailto:" + user.email}>
+          Contact
+        </a>
       </div>
     </div>
   );

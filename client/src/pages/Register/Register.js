@@ -18,6 +18,7 @@ function Register() {
   const [userSkills, setUserSkills] = useState([]);
   const [userInterests, setUserInterests] = useState([]);
   const [profileImage, setProfileImage] = useState();
+  const [imageUploaded, setImageUploaded] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const history = useHistory();
 
@@ -55,6 +56,7 @@ function Register() {
       .then((res) => {
         console.log(res);
         setSubmitting(false);
+        setImageUploaded(false);
         history.push("/signIn");
       });
   };
@@ -96,6 +98,7 @@ function Register() {
       })
       .then((res) => {
         setProfileImage(res.data.image);
+        setImageUploaded(true);
         console.log(res);
       });
   };
@@ -189,21 +192,42 @@ function Register() {
                   options={interests}
                 />
               </label>
-              <label for="profile_pic" className="register-section__form--pic">
-                <h4>Choose photo to upload</h4>
-                <input
-                  type="file"
-                  id="profile_pic"
-                  name="profile_pic"
-                  accept=".jpg, .jpeg, .png"
-                  className="register-section__form--photo"
-                  multiple={false}
-                  onChange={imageHandler}
-                />
-              </label>
+              <div className="register-section__form--upload">
+                <label
+                  for="profile_pic"
+                  className="register-section__form--pic"
+                >
+                  <h4
+                    className={
+                      imageUploaded
+                        ? "register-section__form--hidden"
+                        : "register-section__form--show"
+                    }
+                  >
+                    Upload image
+                  </h4>
+                  <h4
+                    className={
+                      imageUploaded
+                        ? "register-section__form--show"
+                        : "register-section__form--hidden"
+                    }
+                  >
+                    Image uploaded successfully ✅{" "}
+                  </h4>
+                  <input
+                    type="file"
+                    id="profile_pic"
+                    name="profile_pic"
+                    accept=".jpg, .jpeg, .png"
+                    className="register-section__form--photo"
+                    multiple={false}
+                    onChange={imageHandler}
+                  />
+                </label>
+              </div>
             </div>
             <div className="register-section__form--button">
-              {/* <input type='submit' value='REGISTER' className='register-section__form--submit'/> */}
               <button
                 type="submit"
                 className="register-section__form--submit"

@@ -18,12 +18,12 @@ const session = require("express-session"),
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-app.use(express.static("public"));
 app.use(session({ secret: "our secret string" }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static("uploads"));
 
 const JwtStrategy = require("passport-jwt").Strategy,
   ExtractJwt = require("passport-jwt").ExtractJwt;

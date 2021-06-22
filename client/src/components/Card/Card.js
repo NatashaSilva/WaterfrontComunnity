@@ -19,12 +19,18 @@ const Card = ({ user }) => {
 
   const hasSkills = (skills) => skills?.length > 0;
 
-  if (!user) return null;
+  console.log(user.profile_image);
 
+  if (!user) return null;
+  console.log("http://localhost:5000/" + user.profile_image);
   return (
     <div key={user.id} className="user-card__info">
       <div className="user-card__info--title">
-        <img className="user-card__info--img" alt=""></img>
+        <img
+          className="user-card__info--img"
+          src={"http://localhost:5000/" + user.profile_image}
+          alt=""
+        ></img>
         <h2 className="user-card__info--name">{user.name}</h2>
       </div>
       <div className="user-card__info--bio">

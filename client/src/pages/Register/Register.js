@@ -95,7 +95,8 @@ function Register() {
         },
       })
       .then((res) => {
-        setProfileImage(res.image);
+        setProfileImage(res.data.image);
+        console.log(res);
       });
   };
 

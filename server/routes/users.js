@@ -43,8 +43,18 @@ router.get("/", (req, res) => {
 });
 
 router.post("/add-users", async (req, res) => {
-  const { name, email, bio, postal, password, skills, interests } = req.body;
+  const {
+    name,
+    bio,
+    email,
+    postal,
+    password,
+    skills,
+    interests,
+    profile_image,
+  } = req.body;
 
+  console.log("profile_image", profile_image);
   const passwordHashed = bcrypt.hashSync(password, 8);
   console.log(passwordHashed);
 
@@ -54,6 +64,7 @@ router.post("/add-users", async (req, res) => {
     bio,
     postal,
     password: passwordHashed,
+    profile_image,
   };
 
   const createUserRes = await knex("users").insert(user);

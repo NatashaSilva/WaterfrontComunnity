@@ -4,6 +4,7 @@ const cors = require("cors");
 const users = require("./routes/users");
 const interests = require("./routes/interests");
 const skills = require("./routes/skills");
+const image = require("./routes/image");
 const User = require("./models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -78,10 +79,6 @@ passport.use(
           user.attributes.password
         );
 
-        // console.log("check password 1", password);
-        // console.log("check password 2", user.attributes.password);
-        // console.log(passwordsMatch);
-
         if (!passwordsMatch) {
           return done(null, false, { message: "Incorrect password." });
         }
@@ -92,10 +89,7 @@ passport.use(
 );
 
 app.use(cors());
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
 
-// basic home route
 app.get("/", (req, res) => {
   res.send("Welcome to my API");
 });
@@ -103,6 +97,7 @@ app.get("/", (req, res) => {
 app.use("/users", users);
 app.use("/interests", interests);
 app.use("/skills", skills);
+app.use("/image", image);
 
 app.post("/login", function (req, res, next) {
   passport.authenticate("local", { session: false }, (err, user, info) => {

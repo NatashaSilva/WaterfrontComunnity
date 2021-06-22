@@ -17,6 +17,7 @@ function Register() {
   const [interests, setInterests] = useState([]);
   const [userSkills, setUserSkills] = useState([]);
   const [userInterests, setUserInterests] = useState([]);
+  const [profileImage, setProfileImage] = useState();
   const [submitting, setSubmitting] = useState(false);
   const history = useHistory();
 
@@ -46,6 +47,7 @@ function Register() {
       password: password.value,
       skills: userSkills,
       interests: userInterests,
+      profile_image: profileImage,
     };
 
     axios
@@ -80,6 +82,22 @@ function Register() {
       setSkills(formattedSkills);
     });
   }, []);
+
+  const imageHandler = (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+
+    axios
+      .post(`${API_URL_ROOT}/image/upload`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        setProfileImage(res.image);
+      });
+  };
 
   return (
     <section className="register-section">
@@ -178,6 +196,8 @@ function Register() {
                   name="profile_pic"
                   accept=".jpg, .jpeg, .png"
                   className="register-section__form--photo"
+                  multiple={false}
+                  onChange={imageHandler}
                 />
               </label>
             </div>

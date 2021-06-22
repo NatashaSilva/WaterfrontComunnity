@@ -15,15 +15,21 @@ const Header = (props) => {
     });
   };
 
+  console.log(props.user.profile_image);
+
   return (
     <header>
       <div className="header">
         <nav className="header__nav">
           <div className="header__left">
-            <Link to="/user">
-              <div className="header__placeholder"></div>
+            <Link to="/dashboard">
+              <img
+                className="header__placeholder"
+                src={"http://localhost:5000/" + props.user.profile_image}
+                alt=""
+              ></img>
             </Link>
-            {props.user?.name && <p>Hi, {props.user.name}</p>}
+            {props.user?.name && <h3>Hi, {props.user.name}</h3>}
           </div>
           <div className="header__right">
             {/* <Link to="/skills" className="header__navOption">

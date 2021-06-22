@@ -111,6 +111,10 @@ const User = () => {
     );
   }
 
+  if (!skills || !interest) {
+    return <h1 className="loading">Loading...</h1>;
+  }
+
   return (
     <div className="user">
       <Header user={user} />

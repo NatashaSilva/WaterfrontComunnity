@@ -9,8 +9,10 @@ header {
 
 .header{
 
-    & p {
+    & h3 {
         color: $white !important;
+        margin: 0 !important;
+        padding-left: 1rem !important;
     }
 
     &__nav {
@@ -49,8 +51,8 @@ header {
     }
 
     &__placeholder {
-        width: 3rem;
-        height: 3rem;
+        width: 5rem;
+        height: 5rem;
         border-radius: 50%;
         object-fit: cover;
         margin-left: 1rem;

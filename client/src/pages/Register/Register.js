@@ -30,11 +30,11 @@ function Register() {
     setUserInterests(value);
   };
 
-  const styleLink = document.createElement("link");
-  styleLink.rel = "stylesheet";
-  styleLink.href =
-    "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
-  document.head.appendChild(styleLink);
+  // const styleLink = document.createElement("link");
+  // styleLink.rel = "stylesheet";
+  // styleLink.href =
+  //   "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
+  // document.head.appendChild(styleLink);
 
   const handleSubmit = (event) => {
     setSubmitting(true);
@@ -169,7 +169,6 @@ function Register() {
               </label>
               <label htmlFor="skills">
                 <h4>Skills</h4>
-                {/* <Skills /> */}
                 <Dropdown
                   onChange={handleDropDownSelectSkills}
                   placeholder="Skills"
@@ -194,7 +193,7 @@ function Register() {
               </label>
               <div className="register-section__form--upload">
                 <label
-                  for="profile_pic"
+                  htmlFor="profile_pic"
                   className="register-section__form--pic"
                 >
                   <h4

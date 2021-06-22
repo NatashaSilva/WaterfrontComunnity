@@ -31,6 +31,6 @@
     margin: 0;
 }
 
-body, :after, :before {
+*, :after, :before {
     @include reset-body;
 }

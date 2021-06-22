@@ -6,7 +6,7 @@ main {
     background: linear-gradient(rgba(50, 50, 50, 0.7),rgba(50, 50, 50, 0.7)), url("../../assets/images/toronto-purple.jpeg");
     background-size: cover;
     background-position: center;
-    height: 46rem;  
+    height: 100vh;  
 }
 
 .home-section {
@@ -37,8 +37,6 @@ main {
         height: 5rem;
     }
 
-
-
     &__navOption {
         @include reset-link;
         font-weight: bold;
@@ -47,7 +45,7 @@ main {
         border: 2px solid $pink;
         border-radius: 4px;
         padding: 1rem;
-        width: 55px;
+        width: 30%;
         text-align: center;
         &:hover {
             background-color: $purple;

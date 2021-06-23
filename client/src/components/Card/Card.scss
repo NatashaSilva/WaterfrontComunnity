@@ -9,9 +9,15 @@ ul {
     line-height: 1.5rem;
 }
 
+html{
+    height: 100vh;
+    background-color:$purple;
+}
+
 .user {
 
     background-color: $purple;
+    height: 100vh;
 
     & p{ 
         color: $purple;
@@ -22,6 +28,9 @@ ul {
     }
 
     &-card {
+
+        height: 100vh;
+        background-color: $purple;
 
         &__info {
 

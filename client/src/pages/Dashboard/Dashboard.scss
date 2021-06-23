@@ -3,6 +3,7 @@
 @use '../../partials/variables' as *;
 
 .redirect {
+    height: 100vh;
     height: 736px;
     display: flex;
     flex-direction: column;
@@ -25,6 +26,8 @@
 }
 
 .user {
+
+    height: 100vh;
 
     &-card {
 

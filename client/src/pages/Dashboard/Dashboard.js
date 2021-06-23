@@ -115,6 +115,9 @@ const User = () => {
     return <h1 className="loading">Loading...</h1>;
   }
 
+  const allUsersExceptCurrent = users.filter((u) => u.name !== user.name);
+  console.log("remove current user", allUsersExceptCurrent);
+
   return (
     <div className="user">
       <Header user={user} />
@@ -141,10 +144,10 @@ const User = () => {
             options={interest}
           />
         </form>
-        {users
-          .filter((user) => isValidUser(user))
-          .map((user) => (
-            <Card user={user} />
+        {allUsersExceptCurrent
+          .filter((u) => isValidUser(u))
+          .map((u) => (
+            <Card u={u} />
           ))}
       </div>
     </div>

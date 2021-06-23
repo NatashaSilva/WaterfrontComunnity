@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Card.scss";
 
-const Card = ({ user }) => {
+const Card = ({ u }) => {
   const [showSkills, setShowSkills] = useState(false);
   const [showInterest, setShowInterest] = useState(false);
 
@@ -19,22 +19,22 @@ const Card = ({ user }) => {
 
   const hasSkills = (skills) => skills?.length > 0;
 
-  console.log(user.profile_image);
+  // console.log(u.profile_image);
 
-  if (!user) return null;
-  console.log("http://localhost:5000/" + user.profile_image);
+  if (!u) return null;
+  console.log("http://localhost:5000/" + u.profile_image);
   return (
-    <div key={user.id} className="user-card__info">
+    <div key={u.id} className="user-card__info">
       <div className="user-card__info--title">
         <img
           className="user-card__info--img"
-          src={"http://localhost:5000/" + user.profile_image}
+          src={"http://localhost:5000/" + u.profile_image}
           alt=""
         ></img>
-        <h2 className="user-card__info--name">{user.name}</h2>
+        <h2 className="user-card__info--name">{u.name}</h2>
       </div>
       <div className="user-card__info--bio">
-        <p>{user.bio}</p>
+        <p>{u.bio}</p>
       </div>
       <div className="user-card__info--option">
         <div className="user-card__info--skills">
@@ -50,8 +50,8 @@ const Card = ({ user }) => {
               showSkills ? "user-card__info--list" : "user-card__info--hidden"
             }
           >
-            {hasSkills(user.skills) ? (
-              user.skills?.map(({ id, name }) => <li key={id}>{name}</li>)
+            {hasSkills(u.skills) ? (
+              u.skills?.map(({ id, name }) => <li key={id}>{name}</li>)
             ) : (
               <p>This user has no skills.</p>
             )}
@@ -70,8 +70,8 @@ const Card = ({ user }) => {
               showInterest ? "user-card__info--list" : "user-card__info--hidden"
             }
           >
-            {hasInterests(user.interests) ? (
-              user.interests?.map(({ id, name }) => <li key={id}>{name}</li>)
+            {hasInterests(u.interests) ? (
+              u.interests?.map(({ id, name }) => <li key={id}>{name}</li>)
             ) : (
               <p>This user has no interests.</p>
             )}
@@ -79,7 +79,7 @@ const Card = ({ user }) => {
         </div>
       </div>
       <div className="user-card__info--contact">
-        <a className="user-card__info--email" href={"mailto:" + user.email}>
+        <a className="user-card__info--email" href={"mailto:" + u.email}>
           Contact
         </a>
       </div>

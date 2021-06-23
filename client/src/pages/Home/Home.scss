@@ -9,6 +9,11 @@ main {
     height: 100vh;  
 }
 
+
+h1,h2,h3,h4,h5,h6,p, button {
+    font-family: 'Titillium Web' !important;
+}
+
 .home-section {
     
     // background-size: cover;
@@ -47,6 +52,8 @@ main {
         padding: 1rem;
         width: 30%;
         text-align: center;
+        font-family: 'Titillium Web' !important;
+        
         &:hover {
             background-color: $purple;
             opacity: 0.8;

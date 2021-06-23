@@ -12,15 +12,22 @@ ul {
 html{
     height: 100vh;
     background-color:$purple;
+    font-family: 'Titillium Web' !important;
+}
+
+h1,h2,h3,h4,h5,h6,p, button {
+    font-family: 'Titillium Web' !important;
 }
 
 .user {
 
     background-color: $purple;
     height: 100vh;
+    font-family: 'Titillium Web' !important;
 
     & p{ 
         color: $purple;
+        font-family: 'Titillium Web' !important;
     }
 
     & li {
@@ -31,6 +38,7 @@ html{
 
         height: 100vh;
         background-color: $purple;
+        font-family: 'Titillium Web' !important;
 
         &__info {
 
@@ -43,6 +51,7 @@ html{
             &--title {
                 display: flex;
                 align-items: flex-start;
+                font-family: 'Titillium Web' !important;
             }
 
             &--img {

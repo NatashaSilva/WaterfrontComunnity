@@ -4,11 +4,12 @@
 
 html {
     margin: 0;
+    font-family: 'Titillium Web' !important;
 }
 
 .signIn-section {
 
-    font-family: 'Titillium Web';
+    font-family: 'Titillium Web' !important;
     background-color: $purple;
     height: 100vh;
     color: $pink;

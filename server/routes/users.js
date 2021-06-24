@@ -54,7 +54,7 @@ router.post("/add-users", async (req, res) => {
     profile_image,
   } = req.body;
 
-  console.log("profile_image", imagePath);
+  // console.log("profile_image", imagePath);
   const passwordHashed = bcrypt.hashSync(password, 8);
   console.log(passwordHashed);
 

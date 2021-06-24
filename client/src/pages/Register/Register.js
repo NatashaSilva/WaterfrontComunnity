@@ -97,7 +97,9 @@ function Register() {
         },
       })
       .then((res) => {
-        setProfileImage(res.data.image);
+        const imagePath = res.data.image.replace("uploads/", "");
+        console.log("new image path", imagePath);
+        setProfileImage(imagePath);
         setImageUploaded(true);
         console.log(res);
       });

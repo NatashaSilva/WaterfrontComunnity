@@ -24,6 +24,6 @@ $ npm start
 
   2.  Create a new schema called "waterfront_db"
 
-  3.  Follow the instructions to import the data https://kb.iu.edu/d/apnn
+  3.  Follow the instructions to [import the data](https://kb.iu.edu/d/apnn). The path for the data to be imported is: capstone/server/mySQL
 
 

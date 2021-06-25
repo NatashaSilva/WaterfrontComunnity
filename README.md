@@ -1,4 +1,4 @@
-# WaterfrontComunnity
+# Waterfront Comunnity
 
 ## “Waterfront community” app strengthen the sense of community by connecting neighbors with similar interests and needed skills.
 
